@@ -1,5 +1,7 @@
 # A JavaScript RPC server/client library that uses websockets.
 
+[![travis](https://travis-ci.org/kanewallmann/fuse-rpc.svg?branch=master)](https://travis-ci.org/kanewallmann/fuse-rpc)
+
 Do you want real-time method calling and events between your web app and server? This library implements an RPC protocol
 over web sockets which does just that. It's incredible easy to set up and allows you to call functions on the server like
 they are regular client-side functions that return Promises.
@@ -113,7 +115,7 @@ you would be able to if it's local. Even things like dynamic arguments work.
 ```javascript
 const scope = {
     rpc_concat() {
-		return Array.prototype.slice.call(arguments).reduce((a, v) => a + v);
+        return Array.prototype.slice.call(arguments).reduce((a, v) => a + v);
     }
 
     rpc_returnArray() {
