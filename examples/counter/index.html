@@ -1,0 +1,45 @@
+<!DOCTYPE html><!--suppress ALL -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Counter</title>
+	<script src="../../dist/fuse-rpc.web.js"></script>
+
+	<script>
+		var client = new FuseRpc.Client('ws://localhost:8080');
+		var counter = 0;
+
+		function updateCounter () {
+			document.getElementById('counter').innerText = 'Counter is at ' + counter;
+		}
+
+		client.on('open', function () {
+			client.getProxy().then(function (proxy) {
+				// Get the starting value
+				proxy.getCounter().then( function( value ){
+					counter = value;
+					updateCounter();
+				})
+
+				// Update the counter with any changes
+				proxy.on('counterChange', function( value ){
+					counter = value;
+					updateCounter();
+				})
+
+				function click () {
+					// Call the increment funcion on the server
+					proxy.increment();
+				}
+
+				document.getElementById('clicker').addEventListener('click', click);
+			});
+		});
+
+	</script>
+</head>
+<body>
+<div id="counter"></div>
+<button id="clicker">Click Me</button>
+</body>
+</html>
