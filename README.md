@@ -60,7 +60,7 @@ The server can emit events which are picked up on the client side. Below is an e
 ```javascript
 // Assuming server is an instance of FuseRpc.Server
 setInterval( function(){
-    server.emit('tick', ['some', 'data']);
+    server.broadcast('tick', ['some', 'data']);
 }, 1000 );
 ```
 
@@ -86,7 +86,7 @@ server.register(context2,'context2');
 
 server.on('connection', function(ws){
     // ws.id is a unique identifier given to each connected WebSocket on the server 
-    server.emit('newClientConnected', ws.id, 'context1');
+    server.broadcast('newClientConnected', ws.id, 'context1');
 });
 ```
 
