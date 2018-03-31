@@ -121,7 +121,7 @@ class Server extends EventEmitter {
 				// Insert client `WebSocket` as first argument to protocol method
 				args.unshift(ws);
 
-				let result = this['command_' + command].apply(this, args);
+				let result = await this['command_' + command].apply(this, args);
 				this._respond(ws, id, result);
 			} else if (tx.type === 'method') {
 				let context = tx.context;
@@ -133,7 +133,7 @@ class Server extends EventEmitter {
 				if (!this.contexts.hasOwnProperty(context)) {
 					this._unknownContext(ws, id);
 				} else {
-					let result = this.contexts[context].callMethod(method, args);
+					let result = await this.contexts[context].callMethod(method, args);
 					this._respond(ws, id, result);
 				}
 			}

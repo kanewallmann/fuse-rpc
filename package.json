@@ -1,6 +1,6 @@
 {
   "name": "fuse-rpc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A JavaScript RPC server/client library that uses websockets.",
   "browser": "dist/fuse-rpc.web.js",
   "main": "dist/fuse-rpc.node.js",

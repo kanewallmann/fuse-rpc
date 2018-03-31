@@ -24,8 +24,8 @@ class ServerContext {
 		return p;
 	}
 
-	callMethod (method, args) {
-		return this.scope[this.methodPrefix + method].apply(this.scope, args);
+	async callMethod (method, args) {
+		return await this.scope[this.methodPrefix + method].apply(this.scope, args);
 	}
 }
 
